@@ -24,6 +24,10 @@ html, body{
     @apply bg-black hover:bg-white hover:border-black hover:border-[1px] hover:text-black transition-all duration-500  rounded-full text-white w-full
   }
 
+  .btn-w{
+    @apply bg-white hover:bg-black hover:text-white transition-all duration-500 rounded-full text-black w-full border-[2px] border-black 
+  }
+
   .btn-m {
     @apply font-[700] text-[14px] 
   }
