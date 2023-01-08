@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch, FiShare2 } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { GoDiffAdded } from "react-icons/go";
 import { AiOutlineHeart } from "react-icons/ai";
 import { IoHeartDislikeOutline } from "react-icons/io5";
 import { HiOutlineChevronRight } from "react-icons/hi";
-import Image from "next/image";
+
+const SearchContext = React.createContext({
+  screen: "",
+  setScreen: (search: string) => {},
+});
 
 // mock data
 const data = [
@@ -57,16 +61,21 @@ const data = [
 
 const SearchCardAction = ({ icon, action }: any) => {
   return (
-    <div className="flex items-center gap-x-2 text-[16px] font-[600]  ">
-      <p className="text-[20px]"> {icon}</p>
+    <div className="flex items-center gap-x-2  md:text-[12px] text-[10px] font-[600]  ">
+      <p className="md:text-[20px]"> {icon}</p>
       <p>{action}</p>
     </div>
   );
 };
 
 const SearchCard = ({ product, last_recommended, by, store }: any) => {
+  const { setScreen } = React.useContext(SearchContext);
+
   return (
-    <div className="grid grid-cols-2 gap-x-[2rem] items-center bg-[#F5F5F5] rounded-md p-[2rem] shadow-md hover:shadow-xl animate-all duration-300 hover:bg-white">
+    <button
+      onClick={() => setScreen("selected")}
+      className="grid md:grid-cols-2 md:gap-x-[2rem] gap-y-[1rem] items-center bg-[#F5F5F5] rounded-md p-[2rem] shadow-md hover:shadow-xl animate-all duration-300 hover:bg-white"
+    >
       <div>
         <p className="text-[25px] font-[600]">{product}</p>
         <div className="text-[16px] my-[1rem]">
@@ -75,24 +84,29 @@ const SearchCard = ({ product, last_recommended, by, store }: any) => {
         </div>
         <p className="font-[700] text-[16px]">Buy from {store}</p>
       </div>
-      <div className="flex flex-col h-full justify-between">
+      <div className="flex md:flex-col flex-row h-full justify-between">
         <SearchCardAction icon={<GoDiffAdded />} action={"Recommend"} />
         <SearchCardAction icon={<FiShare2 />} action={"Share to..."} />
         <SearchCardAction icon={<AiOutlineHeart />} action={"Save for later"} />
         <SearchCardAction icon={<IoHeartDislikeOutline />} action={"Dislike"} />
       </div>
-    </div>
+    </button>
   );
 };
 
 const Searches = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-      <div className="">
-        <div className="grid grid-cols-2 gap-y-[3rem] gap-x-[8rem]">
-          {data.map((item) => {
+      <div className="w-full">
+        <div className="grid md:grid-cols-2 gap-y-[3rem] gap-x-[8rem] w-full">
+          {data.map((item, index) => {
             return (
               <SearchCard
+                key={index}
                 product={item.product}
                 last_recommended={item.last_recommended}
                 by={item.by}
@@ -116,13 +130,15 @@ const Searches = () => {
           </div>
         </div>
       </div>
-      <div className="text-[#828282] text-[20px] flex gap-x-[3rem] items-center my-[3rem]">
+      <div className="text-[#828282] md:text-[20px] flex md:gap-x-[3rem] items-center my-[3rem] w-full flex-nowrap whitespace-nowrap">
         <p>People also search:</p>
-        <div className="flex items-center font-[600] justify-between flex-1">
-          <p>Hair cream</p>
+        <div className="flex items-center font-[600] justify-between flex-1 w-full gap-x-[1rem]  overflow-x-scroll scrollbar-hide ">
+          <div></div>
           <p>Perfume</p>
           <p>Android Phone</p>
           <p>Face wash</p>
+          <p>Bodycare Youtube Channel</p>
+          <p>Bodycare Youtube Channel</p>
           <p>Bodycare Youtube Channel</p>
         </div>
       </div>
@@ -131,22 +147,23 @@ const Searches = () => {
 };
 
 const SelectedSearch = () => {
+  const { setScreen } = React.useContext(SearchContext);
+
   return (
     <>
       <div>
         {/* product image and details  */}
-        <div className="flex items-end gap-x-[2rem]">
-          <div className="bg-primary rounded-2xl w-[300px] h-[300px] flex items-center justify-center">
-            <Image
+        <div className="flex md:flex-row flex-col md:items-end md:gap-x-[2rem] gap-y-[2rem] w-full">
+          <div className="bg-primary rounded-2xl md:w-[300px] md:h-[300px] w-[210px] h-[210px]   flex items-center justify-center">
+            <img
               alt="Selected produc image"
               src="/images/dummy.svg"
-              width={200}
-              height={300}
+              className=""
             />
           </div>
 
           {/* product details  */}
-          <div className="flex flex-col h-full justify-between text-[16px] font-[500] flex-1 ">
+          <div className="flex flex-col h-full justify-between md:text-[16px] text-[12px] font-[500] flex-1 w-full">
             <p>Product</p>
             <div className="mt-[1rem] ">
               <p className="text-[30px] font-[900]">Adobe Creative Cloud</p>
@@ -156,7 +173,7 @@ const SelectedSearch = () => {
               <p>Last Recommended: Dec. 2021</p>
               <p>Recommended by: Precious, Clarke & 60 others</p>
             </div>
-            <div className="flex gap-x-[2rem] w-[60%] font-[900]">
+            <div className="flex gap-x-[2rem] lg:w-[60%] w-full font-[900] ">
               <button className="btn py-[1rem]">Recommend</button>
               <button className="btn-w py-[1rem]">Discourage</button>
               <button className="btn-w py-[1rem] gap-x-[10px] flex items-center  justify-center">
@@ -167,7 +184,7 @@ const SelectedSearch = () => {
           </div>
         </div>
 
-        <div className="mt-[4rem] flex gap-x-[6rem]">
+        <div className="mt-[4rem] flex md:flex-row flex-col md:gap-x-[6rem] gap-y-[2rem]">
           <div className="flex-1">
             <div className="border-b-black border-b-[2px] pl-[4rem] py-[1rem] ">
               <p className="font-[600] text-[25px] ">Additional Details</p>
@@ -194,9 +211,14 @@ const SelectedSearch = () => {
             <p className="font-[500] text-[16px] mb-[2rem]">
               <i>Link attached: https://m.youtub....</i>
             </p>
-            <div className="flex flex-col gap-y-[4rem] font-[900]">
+            <div className="flex flex-col md:gap-y-[4rem] gap-y-[2rem] font-[900]">
               <button className="btn py-[1rem]">Visit Link</button>
-              <button className="btn-w py-[1rem]">Back</button>
+              <button
+                onClick={() => setScreen("search")}
+                className="btn-w py-[1rem]"
+              >
+                Back
+              </button>
             </div>
           </div>
         </div>
@@ -206,64 +228,70 @@ const SelectedSearch = () => {
 };
 
 const Search = () => {
+  const [screen, setScreen] = useState("search");
+
   return (
-    <div className="px-[15rem] py-[3rem]">
-      {/* Serach bar */}
-      <div className="flex items-center rounded-full text-[#828282]  bg-[#E5E5E5] justify-between p-[1rem] pr-[3rem] md:w-[70%]">
-        <input
-          className="flex-1  text-[18px] p-[1rem] bg-transparent focus:outline-none"
-          type="serch"
-          placeholder="Enter product name"
-        />
-        <div className="flex gap-x-6 items-center text-[25px]">
-          <IoMdClose />
-          <FiSearch />
+    <SearchContext.Provider value={{ screen, setScreen }}>
+      <div className="lg:px-[15rem] md:px-[10rem] px-[3rem] py-[3rem] w-full">
+        {/* Serach bar */}
+        <div className="flex items-center rounded-full text-[#828282]  bg-[#E5E5E5] justify-between md:p-[1rem] p-[0.5rem] md:pr-[3rem] pr-[1rem] md:w-[70%] w-full">
+          <input
+            className="flex-1 w-full md:text-[18px] text-[12px] p-[1rem] bg-transparent focus:outline-none"
+            type="serch"
+            placeholder="Enter product name"
+          />
+          <div className="flex md:gap-x-6 gap-x-4  items-center md:text-[25px] text-[18px]">
+            <IoMdClose />
+            <FiSearch className="md:block hidden" />
+          </div>
         </div>
+
+        {/* drop down */}
+
+        <div className="md:text-[18px] text-[10px] text-[#828282] md:my-[3rem] my-[1rem] px-[2rem] flex md:flex-row flex-col md:items-center justify-between md:w-[60%] w-full ">
+          <div className="flex gap-x-2 items-center ">
+            <p>Category:</p>
+            <select
+              name="category"
+              className="border-none  focus:ring-0 md:text-[18px] text[10px] font-[600]"
+            >
+              <option value="Bodycare & Lifestyle">Bodycare & Lifestyle</option>
+              <option value="Fashion Related">Fashion Related</option>
+              <option value="Online Services">Online Services</option>
+              <option value="Home and office supplies">
+                Home and office supplies
+              </option>
+              <option value="Education">Education</option>
+              <option value="Events and activities">
+                Events and activities
+              </option>
+              <option value="Digital Products">Digital Products</option>
+            </select>
+          </div>
+
+          <div className="flex gap-x-2 items-center ">
+            <p>Location:</p>
+            <select
+              name="location"
+              className="border-none  focus:ring-0 md:text-[18px] text[10px] font-[600]"
+            >
+              <option value="Nigeria">Nigeria</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Kenya">Kenya</option>
+              <option value="South Africa">South Africa</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </div>
+        </div>
+
+        {/* body content */}
+
+        {screen === "search" && <Searches />}
+        {screen === "selected" && <SelectedSearch />}
       </div>
-
-      {/* drop down */}
-
-      <div className="text-[18px] text-[#828282] my-[3rem] px-[2rem] flex items-center justify-between md:w-[60%]">
-        <div className="flex gap-x-2 items-center ">
-          <p>Category:</p>
-          <select
-            name="category"
-            className="border-none  focus:ring-0 text-[18px] font-[600]"
-          >
-            <option value="Bodycare & Lifestyle">Bodycare & Lifestyle</option>
-            <option value="Fashion Related">Fashion Related</option>
-            <option value="Online Services">Online Services</option>
-            <option value="Home and office supplies">
-              Home and office supplies
-            </option>
-            <option value="Education">Education</option>
-            <option value="Events and activities">Events and activities</option>
-            <option value="Digital Products">Digital Products</option>
-          </select>
-        </div>
-
-        <div className="flex gap-x-2 items-center ">
-          <p>Location:</p>
-          <select
-            name="location"
-            className="border-none  focus:ring-0 text-[18px] font-[600]"
-          >
-            <option value="Nigeria">Nigeria</option>
-            <option value="Ghana">Ghana</option>
-            <option value="Kenya">Kenya</option>
-            <option value="South Africa">South Africa</option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Canada">Canada</option>
-          </select>
-        </div>
-      </div>
-
-      {/* body content */}
-      {/* <Searches /> */}
-
-      <SelectedSearch />
-    </div>
+    </SearchContext.Provider>
   );
 };
 

@@ -1,16 +1,16 @@
-import React from 'react'
-import { HeadComp } from '../components/utills'
-import Search from '../components/Search/Search'
+import React from "react";
+import { HeadComp } from "../components/utills";
+import Search from "../components/Search/Search";
 
 const index = () => {
   return (
     <>
-    <HeadComp page={"Home"} />
-    <div>
-    <Search />
-    </div>
+      <HeadComp page={"Home"} />
+      <div className="w-full">
+        <Search />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default index
+export default index;
