@@ -31,7 +31,7 @@ const Home = () => {
 
         <div className="md:mx-0 mx-[2rem]">
           <NormalSearch
-            homesearch
+            page="home"
             placeholder="Search for any product, service or category"
           />
         </div>

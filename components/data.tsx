@@ -15,6 +15,7 @@ import {
 import { TfiWheelchair } from "react-icons/tfi";
 import { RiHeartPulseLine } from "react-icons/ri";
 import { TiWatch } from "react-icons/ti";
+import { HistoryCardProps } from "../types";
 
 export const data: { icon: any; category: string }[] = [
   { icon: <TiWatch />, category: "Accessories" },
@@ -30,4 +31,47 @@ export const data: { icon: any; category: string }[] = [
   { icon: <TfiWheelchair />, category: "Physical Services" },
   { icon: <FiTv />, category: "Electronics & Devices" },
   { icon: <RiHeartPulseLine />, category: "Health & Feeding" },
+];
+
+export const history: HistoryCardProps[] = [
+  {
+    day: "Today",
+    history: [
+      {
+        product: "Apple Watch",
+        categories: ["Accessories", "Fashion related"],
+        makers: ["Apple", "Apple", "Apple"],
+      },
+      {
+        product: "Apple Watch",
+        categories: ["Accessories", "Fashion related"],
+        makers: ["Apple", "Apple", "Apple"],
+      },
+      {
+        product: "Body Cream",
+        categories: ["Body care", "Life style"],
+        makers: ["L'Oreal", "Nivea"],
+      },
+    ],
+  },
+  {
+    day: "Yesterday",
+    history: [
+      {
+        product: "Apple Watch",
+        categories: ["Accessories", "Fashion related"],
+        makers: ["Apple", "Apple", "Apple"],
+      },
+      {
+        product: "Apple Watch",
+        categories: ["Accessories", "Fashion related"],
+        makers: ["Apple", "Apple", "Apple"],
+      },
+      {
+        product: "Body Cream",
+        categories: ["Body care", "Life style"],
+        makers: ["L'Oreal", "Nivea"],
+      },
+    ],
+  },
 ];

@@ -31,23 +31,20 @@ html, body{
   .btn-m {
     @apply font-[700] text-[14px] 
   }
-  .btn-m-sm{
-    @apply 
-  }
-  .btn-m-md{
-    @apply 
-  }
+ 
+ 
   .btn-m-large{
     @apply  text-[16px]
   }
   .btn-d {
     @apply font-[800] text-[18px]
   }
-  .btn-d-sm {
-    @apply 
-  }
-
+ 
   .btn-d-big {
     @apply w-full
+  }
+
+  .text{
+    @apply laptop:text-[18px] text-[12px]
   }
 }

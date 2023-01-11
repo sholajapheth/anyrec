@@ -4,20 +4,30 @@ import { IoMdClose } from "react-icons/io";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 interface NormalSearchProps {
-  homesearch?: boolean;
+  page?: string;
   placeholder?: string;
+  hideActions?: boolean;
+  width?: string;
 }
 
-const NormalSearch = ({ homesearch, placeholder }: NormalSearchProps) => {
+const NormalSearch = ({
+  page,
+  placeholder,
+  hideActions,
+  width,
+}: NormalSearchProps) => {
   return (
     <>
       <div
-        className={`flex items-center rounded-full m-auto text-[#828282] ${
-          homesearch ? "border shadow-md" : " bg-[#E5E5E5]"
-        } justify-between md:p-[1rem] md:pr-[3rem] pr-[1rem] md:w-[70%] w-full`}
+        className={`flex items-center rounded-full m-auto text-[#828282] ${(page =
+          "home"
+            ? "border shadow-md"
+            : " bg-[#E5E5E5]")} justify-between md:p-[1rem] md:pr-[3rem] pr-[1rem] ${
+          width ? width : "md:w-[70%] w-full"
+        }`}
       >
         <div>
-          {homesearch && (
+          {page && (
             <div className="text-[3rem] text-[#B9BCBD] md:block hidden">
               <FiSearch />
             </div>
@@ -28,19 +38,20 @@ const NormalSearch = ({ homesearch, placeholder }: NormalSearchProps) => {
           type="serch"
           placeholder={placeholder || "Enter product name"}
         />
-        <div className="flex md:gap-x-6 gap-x-4  items-center md:text-[25px] text-[18px]">
-          {homesearch ? (
-            <div className="md:h-[4rem] h-[3rem] md:w-[4rem] w-[3rem] md:text-[4rem] text-[2rem]   flex items-center justify-center rounded-full text-black shadow-md">
-              <BsArrowRightCircle />
-            </div>
-          ) : (
-            <>
-              {" "}
-              <IoMdClose />
-              <FiSearch className="md:block hidden" />{" "}
-            </>
-          )}
-        </div>
+        {!hideActions && (
+          <div className="flex md:gap-x-6 gap-x-4  items-center md:text-[25px] text-[18px]">
+            {page === "home" ? (
+              <div className="md:h-[4rem] h-[3rem] md:w-[4rem] w-[3rem] md:text-[4rem] text-[2rem]   flex items-center justify-center rounded-full text-black shadow-md">
+                <BsArrowRightCircle />
+              </div>
+            ) : (
+              <>
+                <IoMdClose />
+                <FiSearch className="md:block hidden" />
+              </>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
