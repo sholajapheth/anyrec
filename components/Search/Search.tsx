@@ -5,6 +5,7 @@ import { GoDiffAdded } from "react-icons/go";
 import { AiOutlineHeart } from "react-icons/ai";
 import { IoHeartDislikeOutline } from "react-icons/io5";
 import { HiOutlineChevronRight } from "react-icons/hi";
+import { NormalSearch } from "../utills";
 
 const SearchContext = React.createContext({
   screen: "",
@@ -234,17 +235,7 @@ const Search = () => {
     <SearchContext.Provider value={{ screen, setScreen }}>
       <div className="lg:px-[15rem] md:px-[10rem] px-[3rem] py-[3rem] w-full">
         {/* Serach bar */}
-        <div className="flex items-center rounded-full text-[#828282]  bg-[#E5E5E5] justify-between md:p-[1rem] p-[0.5rem] md:pr-[3rem] pr-[1rem] md:w-[70%] w-full">
-          <input
-            className="flex-1 w-full md:text-[18px] text-[12px] p-[1rem] bg-transparent focus:outline-none"
-            type="serch"
-            placeholder="Enter product name"
-          />
-          <div className="flex md:gap-x-6 gap-x-4  items-center md:text-[25px] text-[18px]">
-            <IoMdClose />
-            <FiSearch className="md:block hidden" />
-          </div>
-        </div>
+       <NormalSearch />
 
         {/* drop down */}
 
