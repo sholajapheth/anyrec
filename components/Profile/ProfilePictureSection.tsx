@@ -7,8 +7,8 @@ const ProfilePictureSection = ({ className }: any) => {
         <div className="md:h-[232px] md:w-[232px] w-[103px] h-[103px] rounded-full text-center bg-black text-white flex items-center justify-center">
           <p className="font-[900] md:text-[100px] text-[40px]">AR</p>
         </div>
-        <button className="md:h-[5rem] md:w-[5rem] h-[4rem] w-[4rem] rounded-full bg-white sticky md:-ml-[5.5rem] -ml-[2.5rem] mb-[1rem] shadow-xl flex items-center justify-center">
-          <FiEdit2 className="text-[2rem]" />
+        <button className="md:h-[5rem] md:w-[5rem] h-[3rem] w-[3rem] rounded-full bg-white sticky md:-ml-[5.5rem] -ml-[2.5rem] mb-[1rem] shadow-xl flex items-center justify-center">
+          <FiEdit2 className="md:text-[2rem] text-[1.4rem]" />
         </button>
       </div>
     </div>

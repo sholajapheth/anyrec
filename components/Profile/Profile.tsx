@@ -30,7 +30,7 @@ const Profile = () => {
             <ProfilePictureSection className=" md:hidden block " />
           </div>
 
-          <div className="md:border-x-[2px] md:border-b-[2px] md:p-[2rem] rounded-b-[2rem] shadow-md  flex flex-col gap-y-[1rem]">
+          <div className="md:border-x-[2px] md:border-b-[2px] md:p-[2rem] rounded-b-[2rem] md:shadow-md  flex flex-col gap-y-[1rem]">
             <ProfileInfoCard title="Username" value="John Doe" />
             <ProfileInfoCard
               title="Email"
@@ -65,13 +65,13 @@ const Profile = () => {
           <div className="mt-[1rem]">
             <div className="grid grid-cols-2 items-center md:text-black text-white">
               <div className="rounded-[2rem] shadow-md text-center font-[900] p-[1rem] md:bg-white bg-black ">
-                <p className="text-[24px]">12</p>
-                <p className="text-[16px]">Recommendations</p>
+                <p className="md:text-[24px] text-[16px]">12</p>
+                <p className="md:text-[16px] text-[12px]">Recommendations</p>
               </div>
 
               <div className="rounded-[2rem] shadow-md text-center font-[900] p-[1rem] md:bg-white bg-black ">
-                <p className="text-[24px]">27</p>
-                <p className="text-[16px]">Searches</p>
+                <p className="md:text-[24px] text-[16px] ">27</p>
+                <p className="md:text-[16px] text-[12px] ">Searches</p>
               </div>
             </div>
 

@@ -5,7 +5,7 @@ import { Button } from "../utills";
 
 const HistoryCard = ({ day, history }: HistoryCardProps) => {
   return (
-    <div className="laptop:mb-[5rem]">
+    <div className="laptop:mb-[5rem] mb-[3rem]">
       <div className="border-b-[2px] border-b-black  w-full laptop:pl-[10rem]  laptop:my-[3rem] pl-[2rem]">
         <p className="font-[500] text-[16px]">{day}</p>
       </div>
