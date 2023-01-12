@@ -1,8 +1,8 @@
-export const PageTitle = ({ children, padding }: any) => (
+export const PageTitle = ({ children, padding, className }: any) => (
   <p
     className={`font-[900] laptop:text-[50px] text-[24px] ${
       padding && "laptop:my-[4rem]"
-    }`}
+    } ${className}`}
   >
     {children}
   </p>

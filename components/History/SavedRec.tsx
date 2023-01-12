@@ -1,18 +1,15 @@
 import React from "react";
-import {  NormalSearch } from "../utills";
+import { NormalSearch } from "../utills";
 import { history } from "../data";
 import { FiSearch } from "react-icons/fi";
 import { PageTitle } from "../utills/Text";
 import HistoryCard from "./HistoryCard";
 
-
-const History = () => {
+const SavedRec = () => {
   return (
     <div className="w-full laptop:p-0  ">
       <div className="laptop:m-auto laptop:text-center laptop:block flex items-center justify-between p-[2rem]">
-        <PageTitle padding>
-          History
-        </PageTitle>
+        <PageTitle padding>Saved Recommendations</PageTitle>
         <NormalSearch
           page={"history"}
           hideActions
@@ -31,4 +28,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default SavedRec;
