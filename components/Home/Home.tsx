@@ -13,7 +13,7 @@ const HomeCard = ({ category, icon }: HomeCardProps) => (
       {icon}
     </div>
     <p className="md:text-[16px] text-[10px] ">
-      {category.length > 16 ? category.slice(0, 16)+"..." : category}
+      {category.length > 16 ? category.slice(0, 16) + "..." : category}
     </p>
   </div>
 );
@@ -37,8 +37,8 @@ const Home = () => {
         </div>
 
         <div className="grid xl:grid-cols-4  grid-cols-3  gap-y-[4rem] items-start">
-          {data.slice(0, 6).map((item) => (
-            <HomeCard category={item.category} icon={item.icon} />
+          {data.slice(0, 6).map((item, index) => (
+            <HomeCard key={index} category={item.category} icon={item.icon} />
           ))}
         </div>
       </div>
